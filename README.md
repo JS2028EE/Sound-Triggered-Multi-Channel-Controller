@@ -178,7 +178,7 @@ Full project documentation is available in the PDF report included in this repos
 - `README.md`
 - `Sound-Triggered Multi-Channel Controller.pdf`
 - `code`
-- schematics
-- diagrams
-- prototype photos
+- `schematics`
+- `diagrams`
+- `prototype photos`
 
