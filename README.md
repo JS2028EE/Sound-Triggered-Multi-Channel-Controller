@@ -182,3 +182,23 @@ Full project documentation is available in the PDF report included in this repos
 - `diagrams`
 - `prototype photos`
 
+## Build and use
+
+Open `code/Sound-Triggered_Multi-Channel_Controller.ino` in Arduino IDE. If prompted, place it in a sketch folder with the same name. Select Arduino Uno and upload. Open Serial Monitor at **9600 baud** with newline enabled.
+
+| Input | Output | GPIO |
+|---|---|---|
+| One clap, `c`, or `1C` | Blue channel | D3 |
+| Two claps, `cc`, or `2C` | Red channel | D5 |
+| Three claps, `ccc`, or `3C` | Green channel | D6 |
+| Four or more claps, `cccc`, or `4C` | All channels and buzzer | D3/D5/D6/D9 |
+
+The firmware also retains an optional LDR blink mode on A1. It is disabled by default because the documented sound-only build does not connect an LDR. Enable `LIGHT_SENSOR_ENABLED` only after wiring a voltage divider. Blocking output patterns pause input sampling; fast clap sequences during a pattern can be missed.
+
+The PDF and historical test results describe the original prototype. Recheck serial aliases and clap behavior on the physical circuit after uploading this revision. Verify the buzzer current before driving it directly from D9; use a suitable driver if needed.
+
+Actual supporting folders: [block diagrams](Block%20Diagram/), [schematics](schematic/), [photos](Physical%20Images/), and [video](Physical%20Video/).
+
+## License
+
+Original source and documentation are available under the [MIT License](LICENSE). External dependencies, libraries, and third-party assets retain their respective licenses. Licensing does not imply that the prototype is calibrated, certified, or physically validated after later code changes.

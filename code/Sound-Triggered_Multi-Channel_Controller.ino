@@ -1,5 +1,7 @@
 const int soundPin = A0;
 const int ldrPin = A1;
+// Enable only after connecting an LDR divider to A1; a floating input is noisy.
+const bool LIGHT_SENSOR_ENABLED = false;
 
 const int ch1 = 3;
 const int ch2 = 5;
@@ -36,15 +38,15 @@ void loop() {
     String cmd = Serial.readStringUntil('\n');
     cmd.trim();
 
-    if (cmd == "c") blink(ch1);
-    else if (cmd == "cc") blink(ch2);
-    else if (cmd == "ccc") blink(ch3);
-    else if (cmd == "cccc") fastBlinkAll();
+    if ((cmd == "c" || cmd == "1C")) blink(ch1);
+    else if ((cmd == "cc" || cmd == "2C")) blink(ch2);
+    else if ((cmd == "ccc" || cmd == "3C")) blink(ch3);
+    else if ((cmd == "cccc" || cmd == "4C")) fastBlinkAll();
   }
 
   // ---------------- LIGHT SENSOR ----------------
   int lightValue = analogRead(ldrPin);
-  bool isLight = (lightValue > lightThreshold);
+  bool isLight = LIGHT_SENSOR_ENABLED && (lightValue > lightThreshold);
 
   // ---------------- LIGHT BLINK MODE ----------------
   if (isLight) {
